@@ -1,0 +1,609 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f7f6;
+  color: #333;
+}
+
+.App {
+  text-align: center;
+}
+
+/* --- Styling Navbar --- */
+.navbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background-color: #2c3e50;
+  padding: 1rem 2rem;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar-logo { margin: 0; font-size: 1.5rem; font-weight: bold; justify-self: start; }
+.navbar-links { grid-column: 2 / 3; display: flex; justify-content: center; }
+.navbar-links button { background: none; border: none; color: white; font-size: 1rem; font-weight: 500; margin: 0 1.5rem; cursor: pointer; transition: color 0.3s ease; }
+.navbar-links button:hover { color: #1abc9c; }
+.content { padding: 2rem; }
+
+/* --- Styling Form Umum & Pencarian --- */
+.food-tracker-container { max-width: 500px; margin: 0 auto; }
+.food-tracker-form, .search-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.food-tracker-form input, .food-tracker-form select, .search-form input, .auth-form input, .auth-form select { background-color: #fff; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.food-tracker-form input:focus, .food-tracker-form select:focus, .search-form input:focus, .auth-form input:focus, .auth-form select:focus { outline: none; border-color: #20c997; box-shadow: 0 0 0 3px rgba(32, 201, 151, 0.2); }
+.food-tracker-form button, .search-form button, .auth-form button[type="submit"] { padding: 1rem; background-color: #20c997; color: white; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease; }
+.food-tracker-form button:hover, .search-form button:hover, .auth-form button[type="submit"]:hover { background-color: #1baa80; }
+.search-results { list-style: none; padding: 0; margin: 0; margin-top: 0.5rem; background-color: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); max-height: 250px; overflow-y: auto; text-align: left; position: relative; z-index: 10; }
+.search-results li { padding: 0.75rem 1rem; cursor: pointer; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s ease; }
+.search-results li:last-child { border-bottom: none; }
+.search-results li:hover { background-color: #f8f9fa; }
+.search-results li strong { display: block; font-weight: 500; color: #333; }
+.search-results li small { display: block; color: #777; font-size: 0.85rem; margin-top: 2px; }
+.divider { border: none; border-top: 1px solid #eee; margin: 2rem 0; }
+
+/* --- Styling Dashboard --- */
+.dashboard-container h2 { text-align: left; margin-bottom: 1.5rem; }
+.summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+.card { background-color: #fff; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); text-align: center; }
+.card h3 { margin-top: 0; margin-bottom: 0.5rem; font-size: 1rem; color: #555; font-weight: 500; }
+.card p { margin: 0; font-weight: 500; font-size: 1.25rem; }
+.card .large-number { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.25rem; line-height: 1.1; }
+.card span { font-size: 0.9rem; color: #888; }
+.calories-card .large-number { color: #20c997; }
+.protein-card p { color: #3498db; }
+.carbs-card p { color: #f1c40f; }
+.fat-card p { color: #e74c3c; }
+.dashboard-main-content { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: flex-start; }
+.chart-container { background-color: #fff; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); height: 400px; }
+@media (max-width: 820px) { .dashboard-main-content { grid-template-columns: 1fr; } }
+.meal-group { margin-bottom: 1.5rem; }
+.meal-group:last-child { margin-bottom: 0; }
+.meal-group h4 { display: flex; align-items: center; margin: 0 0 0.5rem 0; font-size: 1rem; font-weight: 500; color: #333; border-bottom: 1px solid #f0f0f0; padding-bottom: 0.5rem; }
+.meal-icon { font-size: 1.2rem; margin-right: 0.5rem; }
+.meal-group ul { list-style: none; padding: 0; margin: 0; }
+.meal-group li { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.25rem; border-bottom: 1px solid #f8f8f8; }
+.meal-group li:last-child { border-bottom: none; }
+.food-name { text-align: left; }
+.food-calories { font-weight: 500; color: #20c997; }
+
+/* ================================================= */
+/* === Styling untuk Halaman Login & Register === */
+/* ================================================= */
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  text-align: left;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: #333;
+  font-weight: 700;
+}
+
+.auth-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.auth-form button[type="submit"] {
+  margin-top: 0.5rem;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.auth-switch button {
+  background: none;
+  border: none;
+  color: #20c997;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: rgba(231, 76, 60, 0.1);
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.navbar-user {
+  justify-self: end;
+}
+
+.logout-button {
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+/* CSS BARU UNTUK TOMBOL KEMBALI & PESAN SUKSES */
+.back-button {
+  background: none;
+  border: none;
+  color: #555;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  align-self: flex-start; /* Posisikan di kiri */
+}
+.back-button:hover {
+  color: #20c997;
+}
+
+.success-message {
+  color: #1baa80;
+  background-color: rgba(32, 201, 151, 0.1);
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+.landing-page {
+  width: 100%;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  background-color: #2c3e50; /* Palet warna: Biru gelap */
+  color: #fff;
+  text-align: center;
+  padding: 6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo-placeholder {
+  margin-bottom: 2rem;
+}
+.hero-section h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  max-width: 600px;
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+.hero-section .highlight {
+  color: #20c997; /* Palet warna: Hijau toska */
+}
+.hero-section .subtitle {
+  font-size: 1.1rem;
+  max-width: 550px;
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+.cta-button {
+  background-color: #20c997;
+  color: #fff;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(32, 201, 151, 0.2);
+}
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(32, 201, 151, 0.3);
+}
+
+/* --- Features Section --- */
+.features-section {
+  padding: 5rem 2rem;
+  background-color: #fff;
+}
+.features-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 3rem;
+  color: #333;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.feature-card {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.feature-card p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* --- Footer Section --- */
+.footer-section {
+  background-color: #2c3e50;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+}
+
+.analytics-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.analytics-container h2 {
+  text-align: left;
+  margin-bottom: 0;
+}
+.chart-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.chart-card h3 {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+.chart-wrapper {
+  position: relative;
+  height: 350px;
+}
+.bottom-section {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+.react-calendar {
+  border: none;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+.react-calendar__tile {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+.react-calendar__tile--active,
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #2c3e50;
+  color: white;
+}
+.react-calendar__tile.calorie-green { background-color: #28a745; color: white; }
+.react-calendar__tile.calorie-yellow { background-color: #ffc107; color: #212529; }
+.react-calendar__tile.calorie-red { background-color: #dc3545; color: white; }
+
+.legend-container { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; font-size: 0.85rem; }
+.legend-item { display: flex; align-items: center; }
+.color-box { width: 15px; height: 15px; border-radius: 4px; margin-right: 0.5rem; }
+.color-box.green { background-color: #28a745; }
+.color-box.yellow { background-color: #ffc107; }
+.color-box.red { background-color: #dc3545; }
+
+.filter-container {
+  margin-bottom: 1rem;
+  text-align: right;
+}
+.filter-container label {
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+.filter-container select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 992px) {
+  .bottom-section {
+    grid-template-columns: 1fr;
+  }
+}
+/* Penyesuaian Layout untuk Mobile */
+@media (max-width: 992px) {
+  .bottom-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+.food-item-details {
+  flex-grow: 1; /* Membuat grup ini mengambil sisa ruang */
+  display: flex;
+  justify-content: space-between; /* Mendorong nama ke kiri dan kalori ke kanan */
+  margin-right: 1rem; /* Memberi jarak ke tombol hapus */
+}
+
+.app-layout {
+  display: flex;
+}
+
+.sidebar {
+  width: 260px; /* Lebar sidebar */
+  background-color: #2c3e50; /* Warna biru gelap */
+  color: #ecf0f1;
+  height: 100vh; /* Tinggi penuh layar */
+  display: flex;
+  flex-direction: column; /* Menyusun item secara vertikal */
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
+  position: fixed; /* Membuat sidebar tetap di tempat saat scroll */
+  left: 0;
+  top: 0;
+  transition: width 0.3s ease; /* Transisi untuk responsive */
+}
+
+.main-content {
+  flex-grow: 1; /* Mengambil sisa ruang */
+  margin-left: 260px; /* Memberi ruang kosong seukuran sidebar */
+  padding: 2rem;
+  box-sizing: border-box;
+  transition: margin-left 0.3s ease; /* Transisi untuk responsive */
+}
+
+/* --- Header Sidebar (Logo & Nama) --- */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 0.5rem 1.5rem 0.5rem;
+  border-bottom: 1px solid #34495e;
+}
+.app-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* --- Navigasi Sidebar --- */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.sidebar-nav button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: none;
+  border: none;
+  color: #bdc3c7;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.sidebar-nav button:hover {
+  background-color: #34495e;
+  color: #fff;
+}
+.nav-icon {
+  font-size: 1.2rem;
+}
+
+/* --- Footer Sidebar (Profil & Logout) --- */
+.sidebar-footer {
+  margin-top: auto; /* Mendorong footer ke bagian paling bawah */
+  padding-top: 1.5rem;
+  border-top: 1px solid #34495e;
+}
+.user-profile {
+  padding: 0 0.5rem 1rem 0.5rem;
+}
+.greeting {
+  font-size: 0.9rem;
+  color: #bdc3c7;
+}
+.user-name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+.logout-button-sidebar {
+  width: 100%; /* Membuat tombol logout selebar sidebar */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #34495e;
+  border: none;
+  color: #ecf0f1;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.logout-button-sidebar:hover {
+  background-color: #4e657e;
+}
+
+/* --- RESPONSIVE UNTUK MOBILE --- */
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column; /* Susun ke bawah */
+  }
+  .sidebar {
+    position: relative; /* Kembali ke alur normal */
+    width: 100%;
+    height: auto; /* Tinggi otomatis */
+  }
+  .main-content {
+    margin-left: 0; /* Hapus margin kiri */
+  }
+  .sidebar-header {
+    justify-content: center; /* Tengahkan header di mobile */
+  }
+  .nav-text, .user-name, .greeting {
+    display: none; /* Sembunyikan teks, hanya tampilkan ikon */
+  }
+  .sidebar-nav, .sidebar-footer {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .logout-button-sidebar, .sidebar-nav button {
+    justify-content: center;
+  }
+}
+
+.assistant-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.assistant-container h2 {
+  text-align: center;
+}
+
+.assistant-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.analysis-results {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.analysis-card {
+  background-color: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.analysis-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 0.75rem;
+}
+
+.status-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.status-card li {
+  font-size: 1rem;
+}
+
+.suggestion-card p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.suggestion-card span {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* CSS BARU UNTUK TAMPILAN ASISTEN AI */
+.analysis-result-box {
+  margin-top: 2rem;
+  padding: 1.5rem 2rem;
+  background-color: #e9f7f5; /* Latar belakang hijau muda */
+  border-left: 5px solid #20c997; /* Aksen di kiri */
+  border-radius: 8px;
+  text-align: left;
+  line-height: 1.7;
+}
+.analysis-result-box h3 {
+  margin-top: 0;
+}
+.analysis-result-box p {
+  margin-bottom: 0;
+}
+
+/* Animasi Loader sederhana */
+.loader {
+  margin: 2rem auto;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #20c997;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

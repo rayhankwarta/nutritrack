@@ -1,0 +1,5 @@
+Abaikan folder node_modules
+node_modules/
+
+Abaikan file .env karena berisi informasi sensitif
+.env
