@@ -35,7 +35,12 @@ app.use('/api/fatsecret', fatsecretRoutes);
 app.use('/api/users', userRoutes); 
 app.use('/api/assistant', assistantRoutes);
 // 5. Jalankan server
-app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port: ${PORT}`);
+  });
+}
+
+module.exports = app;
+
 
