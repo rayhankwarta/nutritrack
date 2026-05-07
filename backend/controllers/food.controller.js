@@ -7,7 +7,7 @@ const getFoodLogs = async (req, res) => {
 
 const addFoodLog = async (req, res) => {
   const { foodName, calories, protein, carbohydrates, fat, mealType } = req.body;
-  if (!foodName || !calories || !protein || !carbohydrates || !fat || !mealType) {
+  if (!foodName || calories === undefined || protein === undefined || carbohydrates === undefined || fat === undefined || !mealType) {
     return res.status(400).json({ message: 'Please enter all required fields' });
   }
   const newFood = await Food.create({
@@ -17,22 +17,35 @@ const addFoodLog = async (req, res) => {
   res.status(201).json(newFood);
 };
 
-// --- FUNGSI UNTUK MENGHAPUS DATA ---
 const deleteFoodLog = async (req, res) => {
   try {
     const food = await Food.findById(req.params.id);
-
     if (!food) {
       return res.status(404).json({ message: 'Food log not found' });
     }
-
     if (food.user.toString() !== req.user.id) {
       return res.status(401).json({ message: 'User not authorized' });
     }
-
     await food.deleteOne();
+    res.status(200).json({ id: req.params.id });
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
 
-    res.status(200).json({ id: req.params.id, message: 'Food log removed' });
+const updateFoodLog = async (req, res) => {
+  try {
+    const food = await Food.findById(req.params.id);
+    if (!food) {
+      return res.status(404).json({ message: 'Food log not found' });
+    }
+    if (food.user.toString() !== req.user.id) {
+      return res.status(401).json({ message: 'User not authorized' });
+    }
+    const updatedFood = await Food.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.status(200).json(updatedFood);
   } catch (error) {
     res.status(500).json({ message: 'Server Error' });
   }
@@ -41,5 +54,6 @@ const deleteFoodLog = async (req, res) => {
 module.exports = {
   getFoodLogs,
   addFoodLog,
-  deleteFoodLog, // <-- Pastikan ini diekspor
+  deleteFoodLog,
+  updateFoodLog,
 };

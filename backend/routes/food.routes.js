@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { getFoodLogs, addFoodLog, deleteFoodLog } = require('../controllers/food.controller');
+const { getFoodLogs, addFoodLog, deleteFoodLog, updateFoodLog } = require('../controllers/food.controller');
 const { protect } = require('../middleware/authMiddleware');
 
-// Rute untuk GET (mengambil semua) dan POST (menambah baru)
 router.route('/').get(protect, getFoodLogs).post(protect, addFoodLog);
 
-// RUTE BARU UNTUK DELETE berdasarkan ID
-// Ini yang akan menangani permintaan DELETE ke /api/foods/some_id_here
-router.route('/:id').delete(protect, deleteFoodLog);
+// --- PASTIKAN BAGIAN INI SAMA PERSIS ---
+router.route('/:id')
+  .delete(protect, deleteFoodLog)
+  .put(protect, updateFoodLog); // <-- Metode .put() harus ada di sini
+// ------------------------------------
 
 module.exports = router;

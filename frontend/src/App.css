@@ -1,186 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+/* ================================================= */
+/* === 1. GLOBAL & APP STYLES (Sisa dari App.css) === */
+/* ================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
 
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f4f7f6;
   color: #333;
 }
 
+#__next {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Pastikan images tidak melebihi container */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .App {
   text-align: center;
 }
 
-/* --- Styling Navbar --- */
-.navbar {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  background-color: #2c3e50;
-  padding: 1rem 2rem;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.navbar-logo { margin: 0; font-size: 1.5rem; font-weight: bold; justify-self: start; }
-.navbar-links { grid-column: 2 / 3; display: flex; justify-content: center; }
-.navbar-links button { background: none; border: none; color: white; font-size: 1rem; font-weight: 500; margin: 0 1.5rem; cursor: pointer; transition: color 0.3s ease; }
-.navbar-links button:hover { color: #1abc9c; }
-.content { padding: 2rem; }
-
-/* --- Styling Form Umum & Pencarian --- */
-.food-tracker-container { max-width: 500px; margin: 0 auto; }
-.food-tracker-form, .search-form { display: flex; flex-direction: column; gap: 1.25rem; }
-.food-tracker-form input, .food-tracker-form select, .search-form input, .auth-form input, .auth-form select { background-color: #fff; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
-.food-tracker-form input:focus, .food-tracker-form select:focus, .search-form input:focus, .auth-form input:focus, .auth-form select:focus { outline: none; border-color: #20c997; box-shadow: 0 0 0 3px rgba(32, 201, 151, 0.2); }
-.food-tracker-form button, .search-form button, .auth-form button[type="submit"] { padding: 1rem; background-color: #20c997; color: white; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease; }
-.food-tracker-form button:hover, .search-form button:hover, .auth-form button[type="submit"]:hover { background-color: #1baa80; }
-.search-results { list-style: none; padding: 0; margin: 0; margin-top: 0.5rem; background-color: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); max-height: 250px; overflow-y: auto; text-align: left; position: relative; z-index: 10; }
-.search-results li { padding: 0.75rem 1rem; cursor: pointer; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s ease; }
-.search-results li:last-child { border-bottom: none; }
-.search-results li:hover { background-color: #f8f9fa; }
-.search-results li strong { display: block; font-weight: 500; color: #333; }
-.search-results li small { display: block; color: #777; font-size: 0.85rem; margin-top: 2px; }
-.divider { border: none; border-top: 1px solid #eee; margin: 2rem 0; }
-
-/* --- Styling Dashboard --- */
-.dashboard-container h2 { text-align: left; margin-bottom: 1.5rem; }
-.summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-.card { background-color: #fff; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); text-align: center; }
-.card h3 { margin-top: 0; margin-bottom: 0.5rem; font-size: 1rem; color: #555; font-weight: 500; }
-.card p { margin: 0; font-weight: 500; font-size: 1.25rem; }
-.card .large-number { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.25rem; line-height: 1.1; }
-.card span { font-size: 0.9rem; color: #888; }
-.calories-card .large-number { color: #20c997; }
-.protein-card p { color: #3498db; }
-.carbs-card p { color: #f1c40f; }
-.fat-card p { color: #e74c3c; }
-.dashboard-main-content { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: flex-start; }
-.chart-container { background-color: #fff; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); height: 400px; }
-@media (max-width: 820px) { .dashboard-main-content { grid-template-columns: 1fr; } }
-.meal-group { margin-bottom: 1.5rem; }
-.meal-group:last-child { margin-bottom: 0; }
-.meal-group h4 { display: flex; align-items: center; margin: 0 0 0.5rem 0; font-size: 1rem; font-weight: 500; color: #333; border-bottom: 1px solid #f0f0f0; padding-bottom: 0.5rem; }
-.meal-icon { font-size: 1.2rem; margin-right: 0.5rem; }
-.meal-group ul { list-style: none; padding: 0; margin: 0; }
-.meal-group li { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.25rem; border-bottom: 1px solid #f8f8f8; }
-.meal-group li:last-child { border-bottom: none; }
-.food-name { text-align: left; }
-.food-calories { font-weight: 500; color: #20c997; }
-
-/* ================================================= */
-/* === Styling untuk Halaman Login & Register === */
-/* ================================================= */
-
-.auth-container {
+.app-layout {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 1rem;
+}
+
+.main-content {
+  flex-grow: 1;
+  margin-left: 260px;
+  padding: 2rem;
   box-sizing: border-box;
+  transition: margin-left 0.3s ease-in-out;
 }
 
-.auth-form {
-  width: 100%;
-  max-width: 400px;
-  padding: 2.5rem;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-  text-align: left;
+/* Media query untuk layout utama */
+@media (max-width: 992px) {
+  .main-content {
+    margin-left: 0;
+    padding-top: 5rem; /* Memberi ruang untuk mobile-header */
+  }
 }
 
-.auth-form h2 {
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 2rem;
-  color: #333;
-  font-weight: 700;
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column; /* Susun ke bawah */
+  }
+  .main-content {
+    margin-left: 0; /* Hapus margin kiri */
+  }
 }
 
-.auth-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.auth-form button[type="submit"] {
-  margin-top: 0.5rem;
-}
-
-.auth-switch {
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.auth-switch button {
-  background: none;
-  border: none;
-  color: #20c997;
-  font-weight: 500;
-  cursor: pointer;
-  font-size: 0.9rem;
-  padding: 0;
-}
-
-.error-message {
-  color: #e74c3c;
-  background-color: rgba(231, 76, 60, 0.1);
-  padding: 0.75rem;
-  border-radius: 4px;
-  text-align: center;
-  font-size: 0.9rem;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.navbar-user {
-  justify-self: end;
-}
-
-.logout-button {
-  background-color: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.logout-button:hover {
-  background-color: rgba(255,255,255,0.2);
-}
-/* CSS BARU UNTUK TOMBOL KEMBALI & PESAN SUKSES */
-.back-button {
-  background: none;
-  border: none;
-  color: #555;
-  font-family: 'Poppins', sans-serif;
-  cursor: pointer;
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-  padding: 0;
-  align-self: flex-start; /* Posisikan di kiri */
-}
-.back-button:hover {
-  color: #20c997;
-}
-
-.success-message {
-  color: #1baa80;
-  background-color: rgba(32, 201, 151, 0.1);
-  padding: 0.75rem;
-  border-radius: 4px;
-  text-align: center;
-  font-size: 0.9rem;
-  margin-top: 0;
-  margin-bottom: 1.25rem;
-}
+/* ================================================= */
+/* === 2. LANDING PAGE STYLES === */
+/* ================================================= */
 
 .landing-page {
   width: 100%;
@@ -285,138 +178,333 @@ body {
   font-size: 0.9rem;
 }
 
-.analytics-container {
+/* Tombol CTA (terkait dengan LandingPage) */
+.cta-button {
+  padding: 12px 25px;
+  background-color: #20c997; /* Warna hijau toska */
+  color: white;
+  border: none;
+  border-radius: 8px; /* Sudut melengkung */
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(32, 201, 151, 0.2);
+}
+
+.cta-button:hover {
+  background-color: #1baa80; /* Warna hijau lebih gelap saat hover */
+  transform: translateY(-2px); /* Efek sedikit terangkat */
+  box-shadow: 0 4px 12px rgba(32, 201, 151, 0.3);
+}
+
+.cta-button:active {
+  transform: translateY(0); /* Kembali ke posisi semula saat diklik */
+  box-shadow: 0 2px 8px rgba(32, 201, 151, 0.2);
+}
+
+/* ================================================= */
+/* === 3. LOGIN & REGISTER STYLES === */
+/* ================================================= */
+
+/* Style input/button umum yang digunakan di Auth */
+.auth-form input,
+.auth-form select {
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+  outline: none;
+  border-color: #20c997;
+  box-shadow: 0 0 0 3px rgba(32, 201, 151, 0.2);
+}
+
+.auth-form button[type="submit"] {
+  padding: 1rem;
+  background-color: #20c997;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-form button[type="submit"]:hover {
+  background-color: #1baa80;
+}
+
+/* ================================================= */
+/* === Styling untuk Halaman Login & Register === */
+/* ================================================= */
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: #333;
+  font-weight: 700;
+}
+
+.auth-form form {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.25rem;
 }
-.analytics-container h2 {
-  text-align: left;
-  margin-bottom: 0;
+
+.auth-form button[type="submit"] {
+  margin-top: 0.5rem;
 }
-.chart-card {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-.chart-card h3 {
-  margin-top: 0;
+
+.auth-switch {
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-  color: #333;
-}
-.chart-wrapper {
-  position: relative;
-  height: 350px;
-}
-.bottom-section {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 2rem;
-  align-items: flex-start;
-}
-.react-calendar {
-  border: none;
-  width: 100%;
-  font-family: 'Poppins', sans-serif;
-}
-.react-calendar__tile {
-  border-radius: 6px;
-  transition: all 0.2s ease;
-}
-.react-calendar__tile--active,
-.react-calendar__tile--active:enabled:hover,
-.react-calendar__tile--active:enabled:focus {
-  background: #2c3e50;
-  color: white;
-}
-.react-calendar__tile.calorie-green { background-color: #28a745; color: white; }
-.react-calendar__tile.calorie-yellow { background-color: #ffc107; color: #212529; }
-.react-calendar__tile.calorie-red { background-color: #dc3545; color: white; }
-
-.legend-container { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; font-size: 0.85rem; }
-.legend-item { display: flex; align-items: center; }
-.color-box { width: 15px; height: 15px; border-radius: 4px; margin-right: 0.5rem; }
-.color-box.green { background-color: #28a745; }
-.color-box.yellow { background-color: #ffc107; }
-.color-box.red { background-color: #dc3545; }
-
-.filter-container {
-  margin-bottom: 1rem;
-  text-align: right;
-}
-.filter-container label {
-  margin-right: 0.5rem;
+  margin-top: 1.5rem;
   font-size: 0.9rem;
   color: #555;
 }
-.filter-container select {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  font-family: 'Poppins', sans-serif;
+
+.auth-switch button {
+  background: none;
+  border: none;
+  color: #20c997;
+  font-weight: 500;
+  cursor: pointer;
   font-size: 0.9rem;
+  padding: 0;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: rgba(231, 76, 60, 0.1);
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* CSS BARU UNTUK TOMBOL KEMBALI & PESAN SUKSES */
+.back-button {
+  background: none;
+  border: none;
+  color: #555;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  align-self: flex-start; /* Posisikan di kiri */
+}
+.back-button:hover {
+  color: #20c997;
+}
+
+.success-message {
+  color: #1baa80;
+  background-color: rgba(32, 201, 151, 0.1);
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+/* Style tombol submit umum yang juga dipakai auth */
+button[type="submit"] {
+  padding: 12px 25px;
+  background-color: #20c997; /* Warna hijau toska */
+  color: white;
+  border: none;
+  border-radius: 8px; /* Sudut melengkung */
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(32, 201, 151, 0.2);
+}
+
+button[type="submit"]:hover {
+  background-color: #1baa80; /* Warna hijau lebih gelap saat hover */
+  transform: translateY(-2px); /* Efek sedikit terangkat */
+  box-shadow: 0 4px 12px rgba(32, 201, 151, 0.3);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0); /* Kembali ke posisi semula saat diklik */
+  box-shadow: 0 2px 8px rgba(32, 201, 151, 0.2);
+}
+
+/* ================================================= */
+/* === 4. NAVBAR STYLES (Komponen terpisah) === */
+/* ================================================= */
+
+/* --- Styling Navbar --- */
+.navbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background-color: #2c3e50;
+  padding: 1rem 2rem;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar-logo {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  justify-self: start;
+}
+.navbar-links {
+  grid-column: 2 / 3;
+  display: flex;
+  justify-content: center;
+}
+.navbar-links button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.navbar-links button:hover {
+  color: #1abc9c;
+}
+
+.navbar-user {
+  justify-self: end;
+}
+
+.logout-button {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ================================================= */
+/* === 5. HEADER STYLES (Mobile) === */
+/* ================================================= */
+
+/* Style untuk header mobile dan tombol hamburger */
+.mobile-header {
+  display: none; /* Awalnya disembunyikan di desktop */
 }
 
 @media (max-width: 992px) {
-  .bottom-section {
-    grid-template-columns: 1fr;
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    color: white;
+    padding: 0.75rem 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
   }
-}
-/* Penyesuaian Layout untuk Mobile */
-@media (max-width: 992px) {
-  .bottom-section {
-    grid-template-columns: 1fr;
+  .logo-placeholder-mobile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .app-name-mobile {
+    font-weight: 700;
+  }
+  .hamburger-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
   }
 }
 
-.food-item-details {
-  flex-grow: 1; /* Membuat grup ini mengambil sisa ruang */
-  display: flex;
-  justify-content: space-between; /* Mendorong nama ke kiri dan kalori ke kanan */
-  margin-right: 1rem; /* Memberi jarak ke tombol hapus */
-}
+/* ================================================= */
+/* === 6. SIDEBAR STYLES === */
+/* ================================================= */
 
-.app-layout {
-  display: flex;
-}
+/* ...existing code... */
 
 .sidebar {
-  width: 260px; /* Lebar sidebar */
-  background-color: #2c3e50; /* Warna biru gelap */
-  color: #ecf0f1;
-  height: 100vh; /* Tinggi penuh layar */
+  width: 260px;
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  height: 100vh;
   display: flex;
-  flex-direction: column; /* Menyusun item secara vertikal */
+  flex-direction: column;
   padding: 1.5rem 1rem;
   box-sizing: border-box;
-  position: fixed; /* Membuat sidebar tetap di tempat saat scroll */
+  position: fixed;
   left: 0;
   top: 0;
-  transition: width 0.3s ease; /* Transisi untuk responsive */
-}
-
-.main-content {
-  flex-grow: 1; /* Mengambil sisa ruang */
-  margin-left: 260px; /* Memberi ruang kosong seukuran sidebar */
-  padding: 2rem;
-  box-sizing: border-box;
-  transition: margin-left 0.3s ease; /* Transisi untuk responsive */
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
 }
 
 /* --- Header Sidebar (Logo & Nama) --- */
 .sidebar-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 0 0.5rem 1.5rem 0.5rem;
-  border-bottom: 1px solid #34495e;
+  gap: 0.75rem; /* Jarak antara logo dan teks */
+  padding-bottom: 0.5rem;
+}
+.sidebar-header .sidebar-logo {
+  width: 64px;    /* ukuran logo diperbesar */
+  height: 64px;   /* ukuran logo diperbesar */
+  object-fit: contain;
+  border-radius: 10px;
+  margin-right: 8px;
 }
 .app-name {
-  font-size: 1.5rem;
+  font-size: 1.4rem; /* sedikit diperbesar */
   font-weight: 700;
+  white-space: nowrap;
+  color: #012; /* pastikan kontras terhadap background */
 }
 
 /* --- Navigasi Sidebar --- */
@@ -432,17 +520,18 @@ body {
   gap: 1rem;
   background: none;
   border: none;
-  color: #bdc3c7;
+  color: #000000;
   padding: 0.8rem 1rem;
   border-radius: 8px;
   text-align: left;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1rem;
   cursor: pointer;
+  white-space: nowrap;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 .sidebar-nav button:hover {
-  background-color: #34495e;
+  background-color: #000000;
   color: #fff;
 }
 .nav-icon {
@@ -460,61 +549,641 @@ body {
 }
 .greeting {
   font-size: 0.9rem;
-  color: #bdc3c7;
+  color: #000000;
 }
 .user-name {
   display: block;
   font-size: 1rem;
   font-weight: 500;
-  color: #fff;
+  color: #000000;
 }
 .logout-button-sidebar {
-  width: 100%; /* Membuat tombol logout selebar sidebar */
+  width: 100%;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-  background-color: #34495e;
+  background-color: linear-gradient(135deg, #48bb78, #38a169);
   border: none;
-  color: #ecf0f1;
   padding: 0.8rem 1rem;
   border-radius: 8px;
   text-align: left;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 .logout-button-sidebar:hover {
-  background-color: #4e657e;
+  background-color:  #48bb78;
 }
 
-/* --- RESPONSIVE UNTUK MOBILE --- */
-@media (max-width: 768px) {
-  .app-layout {
-    flex-direction: column; /* Susun ke bawah */
+.sidebar-overlay {
+  display: none;
+}
+
+/* --- RESPONSIVE UNTUK MOBILE (terkait sidebar) --- */
+@media (max-width: 992px) {
+  .sidebar {
+    left: -280px;
+    width: 280px;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
   }
+  .sidebar.open {
+    left: 0;
+  }
+
+  .sidebar-overlay {
+    display: block; /* Tampilkan overlay di mobile */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+  .sidebar-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Duplikat dari media query 768px (jika masih dipakai) */
+@media (max-width: 768px) {
   .sidebar {
     position: relative; /* Kembali ke alur normal */
     width: 100%;
     height: auto; /* Tinggi otomatis */
   }
-  .main-content {
-    margin-left: 0; /* Hapus margin kiri */
-  }
   .sidebar-header {
     justify-content: center; /* Tengahkan header di mobile */
   }
-  .nav-text, .user-name, .greeting {
+  .nav-text,
+  .user-name,
+  .greeting {
     display: none; /* Sembunyikan teks, hanya tampilkan ikon */
   }
-  .sidebar-nav, .sidebar-footer {
+  .sidebar-nav,
+  .sidebar-footer {
     flex-direction: row;
     justify-content: space-around;
   }
-  .logout-button-sidebar, .sidebar-nav button {
+  .logout-button-sidebar,
+  .sidebar-nav button {
     justify-content: center;
   }
 }
+
+/* ================================================= */
+/* === 7. DASHBOARD STYLES === */
+/* ================================================= */
+
+/* Style Dashboard Awal (Gauge) */
+.dashboard-container.modern {
+  text-align: left;
+}
+.dashboard-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+.dashboard-header .user-firstname {
+  color: #20c997;
+}
+.dashboard-header p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 0.25rem;
+  margin-bottom: 2rem;
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.chart-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.chart-card h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+  color: #333;
+}
+.main-gauge-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.calorie-gauge {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  transition: background 0.5s ease;
+}
+.calorie-gauge::before {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+.gauge-center {
+  position: relative;
+  text-align: center;
+}
+.gauge-value {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #20c997;
+}
+.gauge-label {
+  font-size: 0.9rem;
+  color: #555;
+}
+.macros-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.macro-item {
+  width: 100%;
+}
+.macro-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.progress-bar-background {
+  width: 100%;
+  height: 10px;
+  background-color: #e9ecef;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+}
+.food-log-list.modern {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  height: auto;
+  min-height: 570px; /* Sesuaikan tinggi agar sejajar */
+  overflow-y: auto;
+  max-height: 570px; /* Batas tinggi, samakan dengan min-height sebelumnya */
+  overflow-y: auto; /* Tambahkan scrollbar vertikal JIKA konten lebih tinggi */
+}
+.food-log-list.modern h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.empty-log {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #888;
+}
+
+@media (max-width: 992px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .food-log-list.modern {
+    min-height: auto;
+  }
+}
+
+/* --- Styling Dashboard (Bagian Kedua) --- */
+.dashboard-container h2 {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+}
+.card p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+.card .large-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  line-height: 1.1;
+}
+.card span {
+  font-size: 0.9rem;
+  color: #888;
+}
+.calories-card .large-number {
+  color: #20c997;
+}
+.protein-card p {
+  color: #3498db;
+}
+.carbs-card p {
+  color: #f1c40f;
+}
+.fat-card p {
+  color: #e74c3c;
+}
+.dashboard-main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+.chart-container {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  height: 400px;
+}
+@media (max-width: 820px) {
+  .dashboard-main-content {
+    grid-template-columns: 1fr;
+  }
+}
+.meal-group {
+  margin-bottom: 1.5rem;
+}
+.meal-group:last-child {
+  margin-bottom: 0;
+}
+.meal-group h4 {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 0.5rem;
+}
+.meal-icon {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+.meal-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.meal-group li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0.25rem;
+  border-bottom: 1px solid #f8f8f8;
+}
+.meal-group li:last-child {
+  border-bottom: none;
+}
+.food-name {
+  text-align: left;
+}
+.food-calories {
+  font-weight: 500;
+  color: #20c997;
+}
+
+/* Style untuk tombol edit/delete di list dashboard */
+.item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.edit-button,
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+.edit-button:hover {
+  background-color: #e8f4fd; /* Biru muda */
+}
+.delete-button:hover {
+  background-color: #fce8e6; /* Merah muda */
+}
+
+.food-item-details {
+  flex-grow: 1; /* Membuat grup ini mengambil sisa ruang */
+  display: flex;
+  justify-content: space-between; /* Mendorong nama ke kiri dan kalori ke kanan */
+  margin-right: 1rem; /* Memberi jarak ke tombol hapus */
+}
+
+/* ================================================= */
+/* === 8. FOOD TRACKER STYLES === */
+/* ================================================= */
+
+/* --- Styling Form Umum & Pencarian --- */
+.food-tracker-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.food-tracker-form,
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.food-tracker-form input,
+.food-tracker-form select,
+.search-form input {
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.food-tracker-form input:focus,
+.food-tracker-form select:focus,
+.search-form input:focus {
+  outline: none;
+  border-color: #20c997;
+  box-shadow: 0 0 0 3px rgba(32, 201, 151, 0.2);
+}
+.food-tracker-form button,
+.search-form button {
+  padding: 1rem;
+  background-color: #20c997;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.food-tracker-form button:hover,
+.search-form button:hover {
+  background-color: #1baa80;
+}
+.search-results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 0.5rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 250px;
+  overflow-y: auto;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+}
+.search-results li {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+.search-results li:last-child {
+  border-bottom: none;
+}
+.search-results li:hover {
+  background-color: #f8f9fa;
+}
+.search-results li strong {
+  display: block;
+  font-weight: 500;
+  color: #333;
+}
+.search-results li small {
+  display: block;
+  color: #777;
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+.divider {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 2rem 0;
+}
+
+.content {
+  padding: 2rem;
+}
+
+/* Tombol form */
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.form-buttons button {
+  flex-grow: 1;
+}
+.cancel-button {
+  background-color: #6c757d; /* Warna abu-abu */
+}
+.cancel-button:hover {
+  background-color: #5a6268;
+}
+
+/* ================================================= */
+/* === 9. ANALYTICS STYLES === */
+/* ================================================= */
+
+.analytics-container.modern {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.analytics-header {
+  text-align: left;
+}
+.analytics-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+.analytics-header p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 0.25rem;
+}
+
+.analytics-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+.card-title {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.card-header .card-title {
+  margin-bottom: 0;
+}
+.card-subtitle {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.chart-wrapper {
+  height: 350px;
+}
+
+/* Kustomisasi Kalender & Warna Baru yang Lebih Cerah */
+.react-calendar {
+  border: none;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+}
+.react-calendar__tile {
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  height: 45px;
+}
+.react-calendar__tile--active,
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #2c3e50;
+  color: white;
+}
+.react-calendar__tile.calorie-green {
+  background-color: #28a745;
+  color: white;
+}
+.react-calendar__tile.calorie-yellow {
+  background-color: #ffc107;
+  color: #212529;
+}
+.react-calendar__tile.calorie-red {
+  background-color: #dc3545;
+  color: white;
+}
+.react-calendar__navigation button:hover,
+.react-calendar__navigation button:focus,
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #e9ecef;
+}
+
+.legend-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+.color-box {
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+}
+.color-box.green {
+  background-color: #28a745;
+}
+.color-box.yellow {
+  background-color: #ffc107;
+}
+.color-box.red {
+  background-color: #dc3545;
+}
+
+.filter-container select {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  background-color: #f8f9fa;
+}
+
+/* Penyesuaian Layout untuk Mobile */
+@media (max-width: 992px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================= */
+/* === 10. NUTRITION ASSISTANT STYLES === */
+/* ================================================= */
 
 .assistant-container {
   max-width: 800px;
@@ -604,6 +1273,141 @@ body {
   animation: spin 1s linear infinite;
 }
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================================================= */
+/* === 11. PROFILE STYLES === */
+/* ================================================= */
+
+.profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.profile-container h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+.form-group label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.update-message {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #20c997;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+  width: 100%; /* Memastikan elemen mengambil lebar penuh */
+  padding: 12px 15px; /* Padding yang lebih baik */
+  border: 1px solid #dcdcdc; /* Border abu-abu terang */
+  border-radius: 8px; /* Sudut lebih melengkung */
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+  box-sizing: border-box; /* Penting agar padding tidak menambah lebar */
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #20c997; /* Border hijau saat fokus */
+  box-shadow: 0 0 0 3px rgba(32, 201, 151, 0.2); /* Shadow hijau lembut */
+  background-color: #fafffc; /* Latar sedikit lebih cerah saat fokus */
+}
+
+/* --- Gaya Khusus untuk Form Profil --- */
+.profile-container {
+  max-width: 550px; /* Sedikit lebih kecil dari 600px */
+  margin: 2rem auto; /* Margin atas/bawah agar ada jarak dari header */
+  background-color: #fff;
+  padding: 3rem; /* Padding lebih besar */
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); /* Shadow yang lebih menonjol */
+  text-align: left; /* Teks konten ke kiri */
+}
+
+.profile-container h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2.5rem; /* Jarak lebih jauh ke form */
+  font-size: 2rem; /* Ukuran judul lebih besar */
+  color: #333;
+  font-weight: 700;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem; /* Jarak antar grup form lebih besar */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem; /* Jarak antara label dan input */
+}
+
+.form-group label {
+  font-weight: 600; /* Label lebih tebal */
+  font-size: 1rem;
+  color: #444;
+}
+
+.update-message {
+  text-align: center;
+  margin-top: 2rem; /* Jarak dari tombol */
+  padding: 1rem;
+  background-color: #e6fff7; /* Latar belakang hijau muda */
+  border: 1px solid #20c997; /* Border hijau */
+  color: #1baa80;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.label-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.previous-data {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #888;
 }
